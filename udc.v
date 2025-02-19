@@ -1,0 +1,47 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 08/01/2024 06:20:32 PM
+// Design Name: 
+// Module Name: udc
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module udc(
+    input rst,clk,
+    output [7:0] count
+    );
+    reg [7:0] count;
+    reg updown;
+    initial updown=0;
+    always@(posedge clk)
+    begin
+    if(rst)
+        count=8'b0;
+    else if(updown==0)
+        begin
+        count=count+1;
+        if(count==255)
+        updown=1;
+        end
+    else if(updown==255)
+        begin
+        count=count-1;
+        if(count==0)
+        updown=0;
+        end
+end
+endmodule
